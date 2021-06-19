@@ -11,7 +11,7 @@ const conn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'restful_db'
+  database: 'jersey_db'
 });
 
 //connect to database
@@ -40,7 +40,12 @@ app.get('/api/products/:id',(req, res) => {
 
 //Tambahkan data product baru
 app.post('/api/products',(req, res) => {
-  let data = {product_name: req.body.product_name, product_price: req.body.product_price};
+  let data = {
+    product_name: req.body.product_name, 
+    product_price: req.body.product_price, 
+    product_club : req.body.product_club, 
+    product_color: req.body.product_color
+  };
   let sql = "INSERT INTO product SET ?";
   let query = conn.query(sql, data,(err, results) => {
     if(err) throw err;
@@ -50,8 +55,18 @@ app.post('/api/products',(req, res) => {
 
 //Edit data product berdasarkan id
 app.put('/api/products/:id',(req, res) => {
-  let sql = "UPDATE product SET product_name='"+req.body.product_name+"', product_price='"+req.body.product_price+"' WHERE product_id="+req.params.id;
-  let query = conn.query(sql, (err, results) => {
+  let sql = "UPDATE product SET product_name='" + 
+    req.body.product_name 
+    + "', product_club='" 
+    + req.body.product_club
+    + "', product_color='"
+    + req.body.product_color
+    + "', product_price='"
+    + req.body.product_price
+    + "' WHERE product_id="
+    + req.params.id;
+  
+    let query = conn.query(sql, (err, results) => {
     if(err) throw err;
     res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
@@ -59,7 +74,7 @@ app.put('/api/products/:id',(req, res) => {
 
 //Delete data product berdasarkan id
 app.delete('/api/products/:id',(req, res) => {
-  let sql = "DELETE FROM product WHERE product_id="+req.params.id+"";
+  let sql = "DELETE FROM product WHERE product_id=" +  req.params.id + "";
   let query = conn.query(sql, (err, results) => {
     if(err) throw err;
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));

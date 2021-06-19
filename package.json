@@ -1,7 +1,6 @@
 {
   "name": "restful-api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,5 +11,15 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mysql": "^2.16.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MFikri94/restful-api-nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MFikri94/restful-api-nodejs/issues"
+  },
+  "homepage": "https://github.com/MFikri94/restful-api-nodejs#readme",
+  "description": ""
 }
